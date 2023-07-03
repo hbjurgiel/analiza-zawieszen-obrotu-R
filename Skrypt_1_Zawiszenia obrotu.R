@@ -19,7 +19,6 @@ knf_komunikaty$Data.zawieszenia <- as.Date(knf_komunikaty$Data.zawieszenia)
 
 knf_komunikaty$liczba_dni <- bizdays(knf_komunikaty$Data.zawieszenia, knf_komunikaty$Data.odwieszenia, cal = "QuantLib/Poland")
 
-
 knf_komunikaty %>% subset(!is.na(liczba_dni)) %>%  
   ggplot(aes(reorder(Rok, as.integer(Rok)), liczba_dni))+
   geom_bar(stat = "summary", fun = "mean")+
@@ -31,7 +30,6 @@ knf_komunikaty %>% subset(!is.na(liczba_dni)) %>%
   geom_bar(stat = "summary", fun = "median")+
   labs(x="", y="Średnia ilość dni bez notowań")+
   theme_bw()
-
 
 knf_komunikaty %>% subset(!is.na(liczba_dni)) %>%  
   ggplot(aes(reorder(Rok, as.integer(Rok)), liczba_dni))+
