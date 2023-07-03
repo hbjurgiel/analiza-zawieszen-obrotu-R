@@ -39,6 +39,6 @@ knf_komunikaty %>% subset(!is.na(liczba_dni)) %>%
   scale_y_continuous(breaks = seq(0, 400, by = 50))+
   labs(x="Lata", y="Ilość dni bez notowań")+
   theme_bw()
-
-write.csv(knf_komunikaty, file = "D:/Praca końcowa/knf_komunikaty_liczba_dni.csv" ,col.names = FALSE)
+# Należy podać folder docelowego zapisu
+write.csv(knf_komunikaty, file = "DYSK:/FOLDER/knf_komunikaty_liczba_dni.csv" ,col.names = FALSE)
 
