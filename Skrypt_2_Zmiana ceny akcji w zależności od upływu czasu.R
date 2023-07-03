@@ -76,7 +76,6 @@ close_data_pivot <- close_data_filtered %>%
 
 rm(close_data_filtered)
 
-
 # Wyszukanie odpowiednich notowań do wybranych dat i tickerów
 
 zaw_cl <- c()
@@ -181,7 +180,6 @@ for (n in 1:nrow(knf_baza)) {
                         filter(ticker == ticker_knf, date == data_plus_5) %>% 
                         select(3) %>% 
                         as.numeric())
-  
 }
 
 rm(close_data_pivot)
@@ -211,7 +209,6 @@ quotes$plus_3_cl <- plus_3_cl
 quotes$plus_4_cl <- plus_4_cl
 
 quotes$plus_5_cl <- plus_5_cl
-
 
 # Utworzenie bazy danych zawierającej stopy zwrotu w danym dniu i liczbę dni
 # Datą odniesienia w przypadku stóp zwrotu jest data zawieszenia, 
@@ -264,15 +261,14 @@ returns_days$day_diff <- as.character(returns_days$day_diff)
 
 grupa <- c()
 
-
-
 # Zapisanie baz danych 
+# Należy podać foder docelowego zapisu
 
-write.csv(knf_baza, file = "D:/Praca końcowa/knf_baza.csv" ,col.names = FALSE)
+write.csv(knf_baza, file = "DYSK:/FOLDER/knf_baza.csv" ,col.names = FALSE)
 
-write.csv(quotes, file = "D:/Praca końcowa/quotes.csv" ,col.names = FALSE)
+write.csv(quotes, file = "DYSK:/FOLDER/quotes.csv" ,col.names = FALSE)
 
-write.csv(returns, file = "D:/Praca końcowa/returns.csv" ,col.names = FALSE)
+write.csv(returns, file = "DYSK:/FOLDER/returns.csv" ,col.names = FALSE)
 
 # Wykresy
 
@@ -285,8 +281,6 @@ mean_days <- mean(returns$diff_dni)
 data_breaks <- data.frame(start = c(0, 2, 5, 9),  # Create data with breaks
                           end = c(2, 5, 9, 10),
                           colors = factor(1:4))
-
-
 
 returns %>% 
   ggplot(aes(diff_dni, plus_1_ret))+
@@ -318,14 +312,9 @@ returns_days %>%
   scale_y_continuous(breaks = seq(-50, 150, by = 10))+
   theme_bw()
 
-
 returns_days %>% 
   ggplot(aes(reorder(day_diff, as.integer(day_diff)), return))+
   geom_point()+
   labs(x="Ilość dni od zawieszenia/odwieszenia", y="Stopa zwrotu w %")+
   scale_y_continuous(breaks = seq(-50, 150, by = 10))+
   theme_bw()
-
-
-
-
